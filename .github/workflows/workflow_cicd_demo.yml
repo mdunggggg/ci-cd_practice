@@ -1,0 +1,25 @@
+name: workdflow_cicd_practice
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v2
+      - name: hello world
+        run: echo "Hello World"
+        shell: bash
+  goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: goodbye
+        run: echo "goodbye"
+        shell: bash
+
+
