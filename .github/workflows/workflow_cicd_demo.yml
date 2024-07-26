@@ -21,7 +21,7 @@ jobs:
       - name: goodbye
         run: echo "goodbye"
         shell: bash
-  setup_flutter:
+  sqflite:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
@@ -32,33 +32,17 @@ jobs:
         with:
           channel: stable
           cache: true
-          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
-          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
-          pub-cache-key: "flutter-pub:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache of dart pub get dependencies
-          pub-cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
       - run: flutter --version
       - run: flutter pub get
       - run: dart run build_runner build --delete-conflicting-outputs
-  unit_test:
-    runs-on: ubuntu-latest
-    needs: setup_flutter
-    steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
-
-      - name: set up flutter env
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-
       - run: flutter test --plain-name "test insert person"
       - run: flutter test --plain-name "test insert multi person"
       - run: flutter test --plain-name "test update person"
       - run: flutter test --plain-name "test delete person"
       - run: make build_apk_ip
-
       - uses: actions/upload-artifact@v1
         with:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
+
+
