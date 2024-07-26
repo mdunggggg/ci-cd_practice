@@ -19,4 +19,19 @@ class PersonModel {
   });
   factory PersonModel.fromJson(Map<String, dynamic> json) => _$PersonModelFromJson(json);
   Map<String, dynamic> toJson() => _$PersonModelToJson(this);
+
+  PersonModel copyWith({
+    String? name,
+    int? age,
+    String? address,
+    String? dateOfBirth,
+  }) {
+    return PersonModel(
+      name: name ?? this.name,
+      age: age ?? this.age,
+      address: address ?? this.address,
+      dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+    );
+  }
+
 }

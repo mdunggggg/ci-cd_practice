@@ -24,16 +24,21 @@ jobs:
   sqflite:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
-        name: setup sqflite
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: set up flutter env
+        uses: subosito/flutter-action@v2
         with:
           channel: stable
           flutter-version: 3.22.2
       - run: flutter --version
       - run: flutter pub get
       - run: dart run build_runner build --delete-conflicting-outputs
-      - run: flutter test --plain-name "1"
+      - run: flutter test --plain-name "test insert person"
+      - run: flutter test --plain-name "test insert multi person"
+      - run: flutter test --plain-name "test update person"
+      - run: flutter test --plain-name "test delete person"
         shell: bash
 
 
