@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'data/local/database/app_database.dart';
 import 'data/shared_data/app_shared_preference.dart';
 import 'initializer/app_config.dart';
 import 'initializer/app_initializer.dart';
@@ -12,6 +13,7 @@ import 'utils/log_utils.dart';
 Future<void> main() async {
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+    await AppDatabase.init();
     await AppSharedPreference.instance.initSharedPreferences();
     await AppInitializer(AppConfig.getInstance()).init();
     _runMyApp();

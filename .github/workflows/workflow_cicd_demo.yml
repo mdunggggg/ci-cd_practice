@@ -21,5 +21,15 @@ jobs:
       - name: goodbye
         run: echo "goodbye"
         shell: bash
+  sqflite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: flutter pub get
+        name: setup sqflite
+      - run: flutter pub get
+      - run: dart run build_runner build --delete-conflicting-outputs
+      - run: flutter test --plain-name "1"
+        shell: bash
 
 
