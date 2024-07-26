@@ -43,7 +43,7 @@ jobs:
 
 
   build_apk:
-    needs: flutter_setup
+    needs: sqflite
     runs-on: ubuntu-latest
     steps:
       - run: make build_apk_ip
