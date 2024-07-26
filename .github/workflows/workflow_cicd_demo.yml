@@ -39,7 +39,7 @@ jobs:
       - run: flutter test --plain-name "test insert multi person"
       - run: flutter test --plain-name "test update person"
       - run: flutter test --plain-name "test delete person"
-      - run: flutter make build_apk_ip
+      - run: make build_apk_ip
         shell: bash
 
 
