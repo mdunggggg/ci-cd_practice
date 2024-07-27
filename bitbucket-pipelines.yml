@@ -1,11 +1,12 @@
 image: mobiledevops/flutter-sdk-image:3.10.3
-
 pipelines:
   branches:
     main:
       - step:
-          name: Build and Test
           script:
-            - flutter clean
-            - flutter pub upgrade
+            - echo "This script runs only on commit to the main branch."
             - flutter pub get
+            - flutter build apk --release
+
+
+
