@@ -14,6 +14,9 @@ pipelines:
       - step:
           name: Build and Test
           script:
-            - flutter clean
-            - flutter pub upgrade
             - flutter pub get
+            - flutter test --plain-name "test insert person"
+            - flutter test --plain-name "test insert multi person"
+            - flutter test --plain-name "test update person"
+            - flutter test --plain-name "test delete person"
+            - make build_apk_ip
