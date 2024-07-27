@@ -1,4 +1,4 @@
-image: ingluife/flutter:latest
+image: ghcr.io/cirruslabs/flutter
 
 before_script:
   - flutter pub get
