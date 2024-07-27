@@ -1,63 +1,26 @@
+image: ghcr.io/cirruslabs/flutter
+
 stages:
-  - hello
-  - goodbye
-  - build
+  - androidBuild
+  - androidDeploy
 
-variables:
-  FLUTTER_CHANNEL: stable
-  FLUTTER_CACHE: true
-
-before_script:
-  - apt-get update && apt-get install -y curl git
-  - git --version
-
-hello:
-  stage: hello
+buildStagging:
+  stage: androidBuild
+  before_script:
+    - flutter clean
+    - rm pubspec.lock
+    - flutter pub get
+    - flutter packages pub run build_runner build --delete-conflicting-outputs
   script:
-    - echo "Hello World"
-  tags:
-    - ubuntu
-
-goodbye:
-  stage: goodbye
-  script:
-    - echo "goodbye"
-  tags:
-    - ubuntu
-
-sqflite:
-  stage: build
-  script:
-    - |
-      # Install Flutter
-      curl -LO https://storage.googleapis.com/flutter_infra/releases/${FLUTTER_CHANNEL}/linux/flutter_linux_${FLUTTER_CHANNEL}_latest.tar.xz
-      tar xf flutter_linux_${FLUTTER_CHANNEL}_latest.tar.xz
-      export PATH="$PATH:`pwd`/flutter/bin"
-      flutter --version
-
-    - |
-      # Setup Flutter
-      flutter config --no-analytics
-      flutter precache
-      flutter pub get
-
-    - |
-      # Build Runner
-      dart run build_runner build --delete-conflicting-outputs
-
-    - |
-      # Run tests
-      flutter test --plain-name "test insert person"
-      flutter test --plain-name "test insert multi person"
-      flutter test --plain-name "test update person"
-      flutter test --plain-name "test delete person"
-
-    - |
-      # Build APK
-      make build_apk_ip
-
-  artifacts:
-    paths:
-      - build/app/outputs/apk/release/app-release.apk
-  tags:
-    - ubuntu
+    - flutter test --plain-name "test insert person"
+#    - cd android
+#    - pwd
+#    - ls
+#    - bundle exec fastlane android_build_apk_stagging
+#    - fastlane move_files
+#    - fastlane upload_to_drive_and_send_mattermost
+#  artifacts:
+#    paths:
+#      - build/artifacts/
+#  tags:
+#    - flutter
