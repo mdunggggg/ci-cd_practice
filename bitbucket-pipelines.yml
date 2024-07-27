@@ -1,4 +1,4 @@
-image: cirrusci/flutter:3.3.0
+image: mobiledevops/flutter-sdk-image:3.10.3
 
 pipelines:
   branches:
