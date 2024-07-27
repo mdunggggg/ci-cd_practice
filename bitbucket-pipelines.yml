@@ -1,19 +1,13 @@
 image: ghcr.io/cirruslabs/flutter
 
-before_script:
-  - flutter pub get
-  - echo sdk.dir=/opt/android-sdk/ > android/local.properties
-  - echo flutter.sdk=/opt/flutter >> android/local.properties
-  - cd android && gradle wrapper && cd -
-  - chmod +x ./gradlew
-
-
 pipelines:
   branches:
     main:
       - step:
           name: Build and Test
           script:
+            - flutter clean
+            - flutter pub upgrade
             - flutter pub get
             - flutter test --plain-name "test insert person"
             - flutter test --plain-name "test insert multi person"
