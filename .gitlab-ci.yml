@@ -17,8 +17,8 @@ buildStagging:
     - flutter test --plain-name "test update person"
     - flutter test --plain-name "test delete person"
     - make build_apk_ip
-  artifacts:
-    paths:
-      - build/artifacts/
-  tags:
-    - flutter
+#  artifacts:
+#    paths:
+#      - build/artifacts/
+#  tags:
+#    - flutter
