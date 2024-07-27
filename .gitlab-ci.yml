@@ -13,14 +13,12 @@ buildStagging:
     - flutter packages pub run build_runner build --delete-conflicting-outputs
   script:
     - flutter test --plain-name "test insert person"
-#    - cd android
-#    - pwd
-#    - ls
-#    - bundle exec fastlane android_build_apk_stagging
-#    - fastlane move_files
-#    - fastlane upload_to_drive_and_send_mattermost
-#  artifacts:
-#    paths:
-#      - build/artifacts/
-#  tags:
-#    - flutter
+    - flutter test --plain-name "test insert multi person"
+    - flutter test --plain-name "test update person"
+    - flutter test --plain-name "test delete person"
+    - make build_apk_ip
+  artifacts:
+    paths:
+      - build/artifacts/
+  tags:
+    - flutter
