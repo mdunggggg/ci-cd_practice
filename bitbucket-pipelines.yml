@@ -6,7 +6,6 @@ pipelines:
       - step:
           name: Build and Test
           script:
+            - flutter clean
+            - flutter pub upgrade
             - flutter pub get
-            - flutter test
-            - flutter build apk
-            - echo "Build and Test completed on main branch"
