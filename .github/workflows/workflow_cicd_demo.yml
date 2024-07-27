@@ -35,7 +35,7 @@ jobs:
           cache: true
       - run: flutter --version
       - run: flutter pub get
-      - run: dart run build_runner build --delete-conflicting-outputs
+      - run: make run
       - run: flutter test --plain-name "test insert person"
       - run: flutter test --plain-name "test insert multi person"
       - run: flutter test --plain-name "test update person"
