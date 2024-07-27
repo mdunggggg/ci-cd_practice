@@ -1,38 +1,12 @@
-image: atlassian/default-image:latest
+image: cirrusci/flutter:latest
 
 pipelines:
-  default:
-    - step:
-        name: hello world
-        caches:
-          - node
-        script:
-          - echo "Hello World"
-    - step:
-        name: goodbye
-        caches:
-          - node
-        script:
-          - echo "goodbye"
-    - step:
-        name: Set up Flutter and Test
-        caches:
-          - flutter
-        script:
-          - apt-get update && apt-get install -y curl unzip xz-utils git
-          - git clone https://github.com/flutter/flutter.git -b stable --depth 1
-          - export PATH="$PATH:`pwd`/flutter/bin"
-          - flutter --version
-          - flutter pub get
-          - dart run build_runner build --delete-conflicting-outputs
-          - flutter test --plain-name "test insert person"
-          - flutter test --plain-name "test insert multi person"
-          - flutter test --plain-name "test update person"
-          - flutter test --plain-name "test delete person"
-          - make build_apk_ip
-        artifacts:
-          - build/app/outputs/apk/release/app-release.apk
-
-definitions:
-  caches:
-    flutter: flutter/.pub-cache
+  branches:
+    main:
+      - step:
+          name: Build and Test
+          script:
+            - flutter pub get
+            - flutter test
+            - flutter build apk
+            - echo "Build and Test completed on main branch"
