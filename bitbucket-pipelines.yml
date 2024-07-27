@@ -7,33 +7,13 @@ before_script:
   - cd android && gradle wrapper && cd -
   - chmod +x ./gradlew
 
-stages:
-  - test
-  - build
 
-test:android:
-  stage: test
-  script:
-    - cd android
-    - ./gradlew -Pci --console=plain :app:testDebug
-
-build:apk:
-  stage: build
-  script:
-    - flutter build apk
-  artifacts:
-    paths:
-      - build/app/outputs/apk
-
-build:bundle:
-  stage: build
-  script:
-    - flutter build appbundle
-  artifacts:
-    paths:
-      - build/app/outputs/bundle
-
-test:flutter:
-  stage: test
-  script:
-    - flutter test
+pipelines:
+  branches:
+    main:
+      - step:
+          name: Build and Test
+          script:
+            - flutter clean
+            - flutter pub upgrade
+            - flutter pub get
