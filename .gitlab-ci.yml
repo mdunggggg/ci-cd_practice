@@ -1,11 +1,10 @@
 image: ghcr.io/cirruslabs/flutter
 
 stages:
-  - androidBuild
-  - androidDeploy
+  - buildFlutter
 
 buildStagging:
-  stage: androidBuild
+  stage: buildFlutter
   before_script:
     - flutter clean
     - rm pubspec.lock
