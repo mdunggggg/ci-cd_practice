@@ -24,6 +24,9 @@ jobs:
   sqflite:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
       - name: set up flutter env
         id: flutter_setup
         uses: subosito/flutter-action@v2
