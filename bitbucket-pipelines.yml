@@ -1,6 +1,5 @@
 image: ghcr.io/cirruslabs/flutter
 
-
 pipelines:
   branches:
     main:

@@ -5,12 +5,10 @@ stages:
 
 buildStagging:
   stage: buildFlutter
-  before_script:
     - flutter clean
     - rm pubspec.lock
     - flutter pub get
     - flutter packages pub run build_runner build --delete-conflicting-outputs
-  script:
     - flutter test --plain-name "test insert person"
     - flutter test --plain-name "test insert multi person"
     - flutter test --plain-name "test update person"
