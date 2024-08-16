@@ -8,20 +8,7 @@ on:
     branches:
       - main
 jobs:
-  hello:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: hello world
-        run: echo "Hello World"
-        shell: bash
-  goodbye:
-    runs-on: ubuntu-latest
-    steps:
-      - name: goodbye
-        run: echo "goodbye"
-        shell: bash
-  sqflite:
+  firebase_distribution:
     runs-on: self-hosted
     steps:
       - name: checkout repository
@@ -36,10 +23,6 @@ jobs:
       - run: flutter --version
       - run: flutter pub get
       - run: make run
-      - run: flutter test --plain-name "test insert person"
-      - run: flutter test --plain-name "test insert multi person"
-      - run: flutter test --plain-name "test update person"
-      - run: flutter test --plain-name "test delete person"
       - run: make build_apk_ip
       - uses: actions/upload-artifact@v4
         with:

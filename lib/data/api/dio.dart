@@ -75,8 +75,11 @@ class BaseDio {
     return _dio().patch('$baseURL/$path', data: data);
   }
 
-  Future<dynamic> getWithUrl(String path,
-      {Map<String, dynamic>? data, Options? options}) async {
+  Future<dynamic> getWithUrl(
+    String path, {
+    Map<String, dynamic>? data,
+    Options? options,
+  }) async {
     return _dio().get(
       path,
       queryParameters: data,
@@ -84,8 +87,11 @@ class BaseDio {
     );
   }
 
-  Future<dynamic> postWithUrl(String path,
-      {Object? data, Options? options}) async {
+  Future<dynamic> postWithUrl(
+    String path, {
+    Object? data,
+    Options? options,
+  }) async {
     return _dio().post(
       path,
       data: data,
@@ -93,8 +99,11 @@ class BaseDio {
     );
   }
 
-  Future<dynamic> putWithUrl(String path,
-      {Object? data, Options? options}) async {
+  Future<dynamic> putWithUrl(
+    String path, {
+    Object? data,
+    Options? options,
+  }) async {
     return _dio().put(
       path,
       data: data,
@@ -102,8 +111,11 @@ class BaseDio {
     );
   }
 
-  Future<dynamic> deleteWithUrl(String path,
-      {Object? data, Options? options}) async {
+  Future<dynamic> deleteWithUrl(
+    String path, {
+    Object? data,
+    Options? options,
+  }) async {
     return _dio().delete(
       path,
       data: data,
@@ -111,8 +123,11 @@ class BaseDio {
     );
   }
 
-  Future<dynamic> patchWithUrl(String path,
-      {Object? data, Options? options}) async {
+  Future<dynamic> patchWithUrl(
+    String path, {
+    Object? data,
+    Options? options,
+  }) async {
     return _dio().patch(
       path,
       data: data,
