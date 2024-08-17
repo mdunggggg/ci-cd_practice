@@ -24,8 +24,9 @@ jobs:
       - run: flutter pub get
       - run: make run
       - run: make build_apk_ip
-      - run: firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk --app ${{secrets.FIREBASE_APP_ID}}
-      - uses: actions/upload-artifact@v4
+
+      - name: deploy to firebase
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          file: app/build/outputs/apk/release/app-release.apk
