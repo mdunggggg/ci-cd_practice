@@ -39,8 +39,8 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
-          name: dist
-          path: dist
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
