@@ -14,6 +14,15 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v4
 
+      - name: Decode google-services.json
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICE_JSON }}
+        run: echo "$GOOGLE_SERVICES_JSON" > android/app/google-services.json
+          - name: Decode firebase_option
+            env:
+              firebase_options_dart: ${{secrets.FIREBASE_OPTION}}
+            run: echo "$firebase_options_dart" > lib/firebase_options.dart
+
       - name: set up flutter env
         id: flutter_setup
         uses: subosito/flutter-action@v2
@@ -29,22 +38,10 @@ jobs:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
 
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Download Artifact
-        uses: actions/download-artifact@master
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: pre-tester
+          file: build/app/outputs/apk/release/app-release.apk
