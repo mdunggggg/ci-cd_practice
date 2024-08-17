@@ -39,5 +39,5 @@ Future<void> _runMyApp() async {
 }
 
 void _reportError(Object error, StackTrace stackTrace) {
-  Log.e(error, stackTrace: stackTrace, name: 'Uncaught exception');
+  Log.e(error, stackTrace: stackTrace, name: 'UUncaught exception');
 }
