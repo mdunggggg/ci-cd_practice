@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "611058546097",
+    "project_id": "engrisk-e52ef",
+    "storage_bucket": "engrisk-e52ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611058546097:android:e0ce1c42485826d3913990",
+        "android_client_info": {
+          "package_name": "com.example.flutter_clean_architecture"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAphqpfdXZJX7d1glDr3ID4C-nGsiAjfvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

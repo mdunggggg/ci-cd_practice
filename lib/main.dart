@@ -10,12 +10,17 @@ import 'initializer/app_initializer.dart';
 import 'presentation/app/my_app.dart';
 import 'utils/log_utils.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 Future<void> main() async {
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await AppDatabase.init();
     await AppSharedPreference.instance.initSharedPreferences();
     await AppInitializer(AppConfig.getInstance()).init();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     _runMyApp();
   }, _reportError,);
 }
